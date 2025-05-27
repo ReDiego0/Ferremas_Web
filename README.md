@@ -2,7 +2,7 @@ Diego Maldonado | Vicente Gonzalez
 
 ## Descripción del proyecto
 
-Este es un proyecto de desarrollo web para una página de venta de productos de ferretería. Utiliza Django como framework principal y su ORM para la gestión de datos. Está conectado a una base de datos alojada en Firebase.
+Este es un proyecto de desarrollo web para una página de venta de productos de ferretería. Utiliza Django como framework principal y su ORM para la gestión de datos. Está conectado a una base de datos alojada localmente con MySQL.
 
 Además, el sistema integra:
 
