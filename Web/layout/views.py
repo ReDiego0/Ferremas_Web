@@ -1,16 +1,17 @@
-from django.http import HttpResponse
-from django.template import loader
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from app.models import Producto
 
 def homepage(request):
-    template = loader.get_template('homepage.html')
-    return HttpResponse(template.render())
+    productos_carousel = Producto.objects.all()[:5]
+    productos_destacados = Producto.objects.order_by('-id')[:6]
+
+    return render(request, 'homepage.html', {
+        'productos_carousel': productos_carousel,
+        'productos_destacados': productos_destacados,
+    })
 
 def about(request):
-    template = loader.get_template('about.html')
-    return HttpResponse(template.render())
+    return render(request, 'about.html')
 
 def redirect_homepage(request):
     return redirect('homepage')
-
-# Create your views here.
