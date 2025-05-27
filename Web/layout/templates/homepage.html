@@ -4,6 +4,7 @@
 {% block title %}Inicio | Ferremas{% endblock %}
 
 {% block content %}
+{% load clp_format %}
 <!-- Carousel de productos -->
 <div id="carouselProductos" class="carousel slide mb-5" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -16,7 +17,7 @@
         {% endif %}
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
             <h5>{{ producto.nombre }}</h5>
-            <p><strong>${{ producto.precio }}</strong></p>
+            <p><strong>{{ producto.precio|clp }}</strong></p>
         </div>
         </div>
 {% endfor %}
@@ -46,7 +47,7 @@
                     <p class="card-text">{{ producto.descripcion|truncatewords:20 }}</p>
                 </div>
                 <div class="card-footer">
-                <strong>${{ producto.precio }}</strong>
+                <strong>{{ producto.precio|clp }}</strong>
                 </div>
             </div>
         </div>  

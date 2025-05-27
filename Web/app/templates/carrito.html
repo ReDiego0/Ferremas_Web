@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Carrito | Ferremas{% endblock %}
+{% block content %}
+{% load clp_format %}
+<div class="container mt-5">
+    <h2 class="mb-4">Tu carrito</h2>
+    {% if carrito_items %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio unitario</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in carrito_items %}
+            <tr>
+                <td>{{ item.producto.nombre }}</td>
+                <td>{{ item.producto.precio|clp }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.subtotal|clp }}</td>
+                <td>
+                    <a href="{% url 'eliminar_del_carrito' item.producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h4 class="text-end">Total: {{ total|clp }}</h4>
+    {% else %}
+    <p>Tu carrito está vacío.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -3,6 +3,7 @@
 {% block content %}
 
 {% load static %}
+{% load clp_format %}
 <div class="container mt-5">
     <h1 class="text-center mb-4">Productos</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -19,10 +20,14 @@
                     <p class="card-text">{{ producto.descripcion }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
-                    <strong>${{ producto.precio }}</strong>
+                    <strong>{{ producto.precio|clp }}</strong>
                     <form method="POST" action="{% url 'eliminar_producto' producto.id %}" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
                         {% csrf_token %}
                         <button class="btn btn-sm btn-danger">Eliminar</button>
+                    </form>
+                    <form method="POST" action="{% url 'agregar_al_carrito' producto.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-primary">Agregar al carrito</button>
                     </form>
                 </div>
             </div>
