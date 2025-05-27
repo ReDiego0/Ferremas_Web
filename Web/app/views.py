@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ProductoForm
+from .models import Producto
 
 def agregar_producto(request):
     if request.method == 'POST':
@@ -11,5 +12,9 @@ def agregar_producto(request):
         form = ProductoForm()
     
     return render(request, 'agregar_producto.html', {'form': form})
+
+def productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'productos.html', {'productos': productos})
 
 
