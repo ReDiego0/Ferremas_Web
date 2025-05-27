@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from .forms import ProductoForm
 from .models import Producto
 
@@ -25,4 +26,13 @@ def productos(request):
     productos = Producto.objects.all()
     return render(request, 'productos.html', {'productos': productos})
 
-
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Redirige al login después del registro
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'register.html', {'form': form})
